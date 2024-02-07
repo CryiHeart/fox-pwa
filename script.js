@@ -1,4 +1,5 @@
 
+
 class Fox
 {
     constructor(food) {
@@ -18,7 +19,7 @@ class Fox
     } else {
         document.querySelector('.pet_img').src = 'bad.jpg';
     }
-
+    document.querySelector('food').textContent = fox.food;
   }
 }
 
@@ -27,9 +28,12 @@ const fox = new Fox(100);
 let intervalId = setInterval(() => {
     fox.food -= Math.floor(Math.random() * 20);
    if (fox.food <= 0) {
-    fox.food = 0;
-    clearInterval()
+    clearInterval(intervalId);
    }
-   console.log(fox.food);
-}, 3000);
+   fox.checkState();
+}, 2000);
+
+document.querySelector('.feed').addEventListener('click', () => {
+    fox.feed();
+});
 
